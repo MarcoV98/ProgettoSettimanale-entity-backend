@@ -1,0 +1,42 @@
+﻿﻿@using ProgettoSettimanale_entity_backend.Models
+
+<div class="text-center text-primary border border-dark border-3">
+    <h2>Ordini da completare</h2>
+</div>
+
+
+
+<table class="table border border-dark">
+    <thead>
+        <tr>
+            <th scope="col">ID ordine</th>
+            <th scope="col">Allergie</th>
+            <th scope="col">Data Consegna</th>
+            <th scope="col">Note Aggiunzioni</th>
+            <th scope="col">Evaso</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+
+    @foreach (ProgettoSettimanale_entity_backend.Models.Ordini o in Model)
+    {
+        if (o.Evaso == false)
+        {
+            <tbody>
+
+                <tr>
+                    <th>@o.IdOrdine</th>
+                    <td>@o.Allergie</td>
+                    <th>@o.DataConsegna</th>
+                    <td>@o.NoteAggiunta</td>
+                    <td>@o.NoteAggiunta</td>
+                    <td>@o.Evaso</td>
+                    <td><a href="/admin/EditOrdine/?Id=@o.IdOrdine" class="btn btn-primary">Modifica</a></td>
+                    <td><a href="/admin/DeleteOrdine/?Id=@o.IdOrdine" class="btn btn-danger">Elimina</a></td>
+                </tr>
+            </tbody>
+        }
+    }
+</table>

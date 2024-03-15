@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "CartRemove";
+}
+<div class="text-center text-primary">
+    <h2>Sei sicuro?</h2>
+    <div class="d-flex align-items-center justify-content-center">
+        @using (Html.BeginForm())
+        {
+            <button class="text-decoration-none ms-2 p-1" type="submit">Si</button>
+        }
+        <a href="/home/cart" class="text-decoration-none ms-2 p-1">No</a>
+    </div>
+</div>

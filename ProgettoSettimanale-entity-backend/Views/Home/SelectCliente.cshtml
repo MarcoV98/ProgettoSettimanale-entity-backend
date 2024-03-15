@@ -1,0 +1,17 @@
+﻿﻿@model ProgettoSettimanale_entity_backend.Models.Clienti
+@{
+    ViewBag.Title = "SelectCliente";
+}
+
+<div class="rounded-3 text-center mx-auto">
+    <h2 class="text-primary">Le tue informazioni personali</h2>
+     Nome
+    <p>@Html.DisplayFor(model => model.Nome)</p>
+    Cognome
+    <p>@Html.DisplayFor(model => model.Cognome)</p>
+    Indirizzo di consegna
+    <p>@Html.DisplayFor(model => model.Indirizzo)</p>
+    IdCliente
+    <p>@Html.DisplayFor(model => model.IdCliente)</p>
+    <a href="/Home/EditCliente/?id=@Html.DisplayFor(model => model.IdCliente)" class="btn mb-2 btn-primary">Modifica credenziali</a>
+</div>

@@ -1,0 +1,50 @@
+﻿﻿@model ProgettoSettimanale_entity_backend.Models.Pizze
+
+@{
+    ViewBag.Title = "Dettagli";
+}
+
+<h2 class="text-center text-primary mx-auto">Dettagli</h2>
+
+<div class="card mb-3">
+    <div class="row g-0 d-flex align-items-center">
+        <div class="col-md-8">
+            <div class="card-body mt-auto mb-auto ">
+                <h5 class="card-title"> @Html.DisplayFor(model => model.Nome)</h5>
+                <p class="card-text"> @Html.DisplayFor(model => model.Prezzo)</p>
+                <p class="card-text">Tempo di consegna:  @Html.DisplayFor(model => model.TempoConsegna)</p>
+                <p class="card-text">Ingredienti: @Html.DisplayFor(model => model.Ingredienti)  </p>
+                Quantità: <input type="number" name="Quantità" value="" id="quantità" />
+                <button type="submit" class="btn btn-primary mx-auto mt-2" id="Button">Aggiungi all'ordine'</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $("#Button").click(function () {
+                console.log("Ordine", $("#quantità").val(),@Html.DisplayFor(model=> model.IdPizza))
+                var prodotto = {
+                Quantità: $("#quantità").val(), Prodotto: @Html.DisplayFor(model=> model.IdPizza) }
+                sessionStorage.setItem("Ordine", JSON.stringify(prodotto))
+
+
+                $.ajax({
+                    method: "POST",
+                    url: "../AggiungiOrdine",
+                    data: { Quantità: prodotto.Quantità, IdPizza: prodotto.Prodotto },
+                    success: function (data) {
+                        console.log(data)
+
+                    }
+                });
+
+            })
+        })
+
+    </script>
+}

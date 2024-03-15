@@ -1,0 +1,59 @@
+﻿﻿@using ProgettoSettimanale_entity_backend.Models
+@{
+    ViewBag.Title = "cart";
+
+
+
+}
+<div class="p-3">
+    @if (Session["Carello"] != null)
+    {<div class=" text-primary text-center ">
+            <h2>Il tuo carrello</h2>
+        </div>
+        foreach (Prodotto p in Model)
+        {
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"> @p.Nome</h5>
+                            <p class="card-text"><strong>Prezzo: </strong> @string.Format("{0:C}", @p.Prezzo)</p>
+                            <p class="card-text"><strong>Tempo di consegna: </strong>  @p.TempoConsegna</p>
+                            <p class="card-text">  <strong>Ingredienti : </strong> @p.Ingredienti  </p>
+                            <p class="card-text">  <strong>Quantità : </strong> @p.Quantità  </p>
+                            <a href="/Home/CartRemove/?Id=@p.IdPizza" class="btn btn-danger" id="Elimina">Elimina</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+        <div class="text-center p-2">
+            <h3 class="text-white ">Totale carrello: @string.Format("{0:C}", @ViewBag.totale) </h3>
+            <a href="/Home/CreateOrdine" class="btn btn-primary">Concludi l'ordine</a>
+            <a href="/Home/CartRemoveAll" class="btn btn-primary">Svuota il carello</a>
+        </div>
+    }
+    @if (Session["Carello"] == null)
+    {
+        <div class="text-primary text-center">
+            <h2>Il tuo carrello è vuoto</h2>
+        </div>
+    }
+
+
+
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Elimina").click(function () {
+                var valore = $(this).data("Id")
+
+        console.log("Val",valore)
+            })
+        })
+
+    </script>
+}

@@ -1,0 +1,24 @@
+﻿﻿@using ProgettoSettimanale_entity_backend.Models
+
+<div class="border border-dark border-3">
+    @if (Session["OrdineEfettuato"] != null)
+    {
+        <h2 class="text-center text-primary">Riepilogo Ordine</h2>
+        <h3>Le tue pizze</h3> <br />
+        foreach (ProgettoSettimanale_entity_backend.Models.DB p in Model)
+        {
+            <strong> @p.Nome</strong>
+            <ul>
+                <li> <strong>Prezzo: </strong>@string.Format("{0:C}", @p.Prezzo)</li>
+                <li> <strong>Quantità: </strong> @p.Quantità</li>
+                <li> <strong>Ingredienti: </strong>@p.Ingredienti</li>
+            </ul>
+        }
+        <p><strong>Totale ordine: </strong>@string.Format("{0:C}", @ViewBag.totale) </p>
+    }
+    else
+    {
+        <h2 class="text-center text-primary">Nessun ordine effettuato</h2>
+
+    }
+</div>

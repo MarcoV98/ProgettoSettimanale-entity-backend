@@ -1,0 +1,42 @@
+﻿﻿@using ProgettoSettimanale_entity_backend.Models
+
+<link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+<body>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <a href="/Admin/CreateProdotti" class="btn btn-warning mx-auto my-3">Aggiungi prodotto</a>
+    }
+    <div class="container">
+        <div>
+            <h1 class="text-center text-primary">Menù</h1>
+            <h3 class="text-center text-primary">LE NOSTRE PIZZE</h3>
+        </div>
+        <div class="row p-3 m-1">
+
+            @foreach (Pizze p in Model)
+            {
+                <div class="col-12 col-6 col-md-4 col-xl-3 mt-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-primary">@p.Nome</h5>
+                            <p class="card-text">Ingredienti: @p.Ingredienti</p>
+                            <p class="card-text">Tempo di consegna: @p.TempoConsegna</p>
+                            <p class="card-text">@string.Format("{0:C}", @p.Prezzo)   </p>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a href="/Admin/EditPizza/?Id=@p.IdPizza" class="btn btn-warning mx-auto">Modifica</a>
+                                <a href="/Admin/DeletePizza/?Id=@p.IdPizza" class="btn btn-danger mx-auto">Elimina</a>
+                            }
+                            @if (User.IsInRole("User"))
+                            {
+                                <a href="/Home/Dettagli/?Id=@p.IdPizza" class="btn btn-primary mx-auto">Dettagli</a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>

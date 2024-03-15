@@ -1,0 +1,63 @@
+﻿﻿
+@{
+    ViewBag.Title = "Query";
+}
+
+<div class="container">
+    <div class="row" id="List1">
+
+    </div>
+</div>
+<div class="text-primary mt-4 ">
+    <h2 class="text-center">Totale incasso</h2>
+    <h6 class="text-center mx-auto">Inserisci data</h6>
+    <div class="d-flex align-items-center justify-content-center mb-3">
+        <input type="text" name="name" value="" id="Input" class="mb-3 form-control mt-3" />
+        <button id="Cerca" class="btn btn-primary mt-3 ms-2 mb-3 ">Cerca</button>
+    </div>
+
+    <div class="container">
+        <div class="row" id="List">
+
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+               /* $("#List1").empty()*/;
+                $.ajax({
+                    method: "Get",
+                    url: "TotOrdinIEvasi",
+                    success: function (list) {
+                        console.log(list)
+                        var Tot = "<div class='col text-center mt-3 rounded-3 w-25'><h4>Numero totale ordini evasi:" + list + "</h4> </div> "
+                        $("#List1").append(Tot);
+
+
+                    }
+
+            })
+
+            $("#Cerca").click(function () {
+                var valore = $("#Input").val()
+                $.ajax({
+                    method: "POST",
+                    url: "TotIncassoGiornata",
+                    data: { DataConsegna: valore },
+                    success: function (data) {
+                        console.log(data)
+
+                        var licurrent = "<h5 class='text-center'>Totale incassato il " + valore + " : " + data + " €</h5>";
+                            $("#List").append(licurrent);
+
+                    }
+                })
+
+            })
+        })
+    </script>
+}

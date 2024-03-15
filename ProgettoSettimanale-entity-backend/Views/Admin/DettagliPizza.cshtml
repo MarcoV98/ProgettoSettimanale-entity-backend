@@ -1,0 +1,26 @@
+﻿﻿@model ProgettoSettimanale_entity_backend.Models.Pizze
+@using ProgettoSettimanale_entity_backend.Models
+    ViewBag.Title = "DettagliPizza";
+}
+
+<h2>DettagliPizza</h2>
+
+
+@*@foreach(w16_1.Models.Pizze p in Model.Pizze)
+    {
+
+    }*@
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title"> @Html.DisplayFor(model => model.Nome)</h5>
+                <p class="card-text"> @Html.DisplayFor(model => model.Prezzo)</p>
+                <p class="card-text"><strong>Tempo di consegna: </strong>  @Html.DisplayFor(model => model.TempoConsegna)</p>
+                <p class="card-text"> @Html.DisplayFor(model => model.Ingredienti)  </p>
+                <a href="/Admin/EditPizza/?Id=@HttpContext.Current.Request.QueryString["Id"]" class="btn btn-warning mx-auto">Modifica</a>
+                <a href="/Admin/DeletePizza/?Id=@HttpContext.Current.Request.QueryString["Id"]" class="btn btn-danger mx-auto">Elimina</a>
+            </div>
+        </div>
+    </div>
+</div>
